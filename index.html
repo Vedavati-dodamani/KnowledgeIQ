@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EnterIQ | Enterprise Knowledge Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<div id="auth-shell" class="auth-shell active">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <span class="brand-mark">K</span>
+      <div>
+        <strong>KNOWLEDGEIQ</strong>
+        <small>Enterprise Knowledge Assistant</small>
+      </div>
+    </div>
+
+    <div class="auth-copy">
+      <span class="eyebrow" data-i18n="secureEnterpriseSearch">SECURE ENTERPRISE SEARCH</span>
+      <h1 data-i18n="loginTitle">Upload once. Ask anything. Get evidence-backed answers.</h1>
+    </div>
+
+    <div class="auth-form">
+      <label data-i18n="email">Email</label>
+      <input type="email" id="login-email" value="admin@knowledgeiq.ai" placeholder="name@company.com">
+
+      <label data-i18n="password">Password</label>
+      <input type="password" id="login-password" value="Admin@123" placeholder="Enter password">
+      <p class="login-hint">Demo admin: admin@knowledgeiq.ai / Admin@123 · Employee: employee@knowledgeiq.ai / User@123</p>
+
+      <div class="role-switch">
+        <button type="button" class="role-btn active" data-login-role="admin" data-i18n="admin">Admin</button>
+        <button type="button" class="role-btn" data-login-role="employee" data-i18n="employee">Employee</button>
+      </div>
+
+      <button type="button" class="btn btn-primary full-width" id="login-button" data-i18n="accessWorkspace">Access Workspace</button>
+    </div>
+  </div>
+</div>
+
+<div class="app-shell hidden">
+
+  <aside class="sidebar">
+    <a class="brand" href="#">
+      <span class="brand-mark">K</span>
+      <span><strong>KNOWLEDGEIQ</strong><small>Enterprise Knowledge AI</small></span>
+    </a>
+
+    <div class="nav-label">WORKSPACE</div>
+    <nav class="navigation">
+      <button class="nav-link active admin-nav" data-page="dashboard" data-i18n="dashboard"><span class="nav-icon">▦</span>Dashboard</button>
+      <button class="nav-link admin-nav" data-page="upload" data-i18n="upload"><span class="nav-icon">⇧</span>Upload Documents</button>
+      <button class="nav-link admin-nav" data-page="chat" data-i18n="chat"><span class="nav-icon">✧</span>AI Assistant</button>
+      <button class="nav-link admin-nav" data-page="citations" data-i18n="citations"><span class="nav-icon">▤</span>Citation Viewer</button>
+      <button class="nav-link admin-nav" data-page="batch" data-i18n="batch"><span class="nav-icon">⇄</span>Batch Questions</button>
+      <button class="nav-link admin-nav" data-page="versions" data-i18n="versions"><span class="nav-icon">◷</span>Version Control</button>
+      <button class="nav-link admin-nav" data-page="analytics" data-i18n="analytics"><span class="nav-icon">◫</span>Analytics</button>
+
+      <button class="nav-link employee-nav hidden" data-page="employee-dashboard" data-i18n="dashboard"><span class="nav-icon">▦</span>Dashboard</button>
+      <button class="nav-link employee-nav hidden" data-page="chat" data-i18n="askAssistant"><span class="nav-icon">✧</span>Ask AI</button>
+      <button class="nav-link employee-nav hidden" data-page="library" data-i18n="upload"><span class="nav-icon">▤</span>Document Library</button>
+      <button class="nav-link employee-nav hidden" data-page="conversations" data-i18n="chat"><span class="nav-icon">◍</span>My Conversations</button>
+      <button class="nav-link employee-nav hidden" data-page="voice" data-i18n="chat"><span class="nav-icon">◉</span>Voice Assistant</button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <button class="nav-link logout-link" id="logout-button"><span class="nav-icon">↩</span>Logout</button>
+      <div class="server-status">
+        <span id="server-dot"></span>
+        <span id="server-label">Backend connected</span>
+      </div>
+      <div class="profile">
+        <span class="avatar" id="sidebar-avatar">AD</span>
+        <span><strong id="profile-name">Administrator</strong><small id="profile-role">Workspace</small></span>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-area">
+    <header class="topbar">
+      <div>
+        <div class="crumb">ENTERPRISE WORKSPACE / <span id="crumb-current">DASHBOARD</span></div>
+        <h1 id="page-title">Dashboard</h1>
+      </div>
+      <div class="top-actions">
+        <span class="event-tag">AI READY</span>
+        <span class="top-avatar" id="top-avatar">AD</span>
+      </div>
+    </header>
+
+    <!-- DASHBOARD -->
+    <section class="page active" id="dashboard">
+      <div class="hero">
+        <div class="hero-copy">
+          <span class="eyebrow" data-i18n="employeeKnowledgeAssistant">EMPLOYEE KNOWLEDGE ASSISTANT</span>
+          <h2 data-i18n="employeeKnowledgeAssistantTitle">Find answers faster with trusted company knowledge.</h2>
+          <p data-i18n="employeeKnowledgeAssistantSubtitle">Ask HR, policy, operations, and support questions from verified company documents with evidence-backed AI answers.</p>
+          <div class="hero-actions">
+            <button class="btn btn-light" data-go="chat" data-i18n="askAssistant">Ask the Knowledge Assistant →</button>
+            <span class="hero-badge" data-i18n="forEmployees">For employees • Approved knowledge</span>
+          </div>
+        </div>
+        <div class="hero-art">
+          <div class="art-orbit">✧</div>
+          <div class="art-card"><span>DOCUMENT</span><b>Evidence first</b><i>✓ Verified source</i></div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div><h2>Knowledge Base Overview</h2><p>Live status of your document corpus.</p></div>
+        <button class="btn btn-primary" data-go="upload">+ Upload documents</button>
+      </div>
+
+      <div class="stat-grid">
+        <article class="stat-card"><span class="stat-icon blue">▤</span><p>Total documents</p><strong id="stat-total">0</strong><small>Selected in this session</small></article>
+        <article class="stat-card"><span class="stat-icon green">✓</span><p>Current versions</p><strong id="stat-current">0</strong><small>Current file records</small></article>
+        <article class="stat-card"><span class="stat-icon amber">◷</span><p>Superseded versions</p><strong id="stat-old">0</strong><small>Older documents</small></article>
+        <article class="stat-card"><span class="stat-icon violet">▣</span><p>Indexed documents</p><strong id="stat-indexed">0</strong><small>Backend indexing required</small></article>
+      </div>
+
+      <div class="dashboard-grid">
+        <article class="panel">
+          <div class="panel-heading"><div><h3>Quick actions</h3><p>Go directly to a workspace tool.</p></div></div>
+          <div class="quick-actions">
+            <button data-go="upload"><span>⇧</span><b>Upload documents</b><small>Add PDF, TXT or Markdown files</small></button>
+            <button data-go="chat"><span>✧</span><b>Ask a question</b><small>Ask about your documents</small></button>
+            <button data-go="batch"><span>⇄</span><b>Batch questions</b><small>Process a CSV question set</small></button>
+            <button data-go="versions"><span>◷</span><b>Review versions</b><small>Check document versions</small></button>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading"><div><h3>Processing pipeline</h3><p>How a document becomes searchable.</p></div></div>
+          <ol class="pipeline">
+            <li><span>01</span><div><b>Upload</b><small>PDF, TXT and Markdown</small></div></li>
+            <li><span>02</span><div><b>Extract content</b><small>Preserve page and section</small></div></li>
+            <li><span>03</span><div><b>Create passages</b><small>Keep source metadata</small></div></li>
+            <li><span>04</span><div><b>Index</b><small>Semantic or hybrid retrieval</small></div></li>
+          </ol>
+        </article>
+      </div>
+
+      <article class="panel recent-panel">
+        <div class="panel-heading"><div><h3>Recent documents</h3><p>Files selected in this browser session.</p></div><button class="text-button" data-go="upload">View library →</button></div>
+        <div id="recent-documents" class="empty-state">No documents loaded yet.</div>
+      </article>
+    </section>
+
+    <!-- DOCUMENT UPLOAD -->
+    <section class="page" id="employee-dashboard">
+      <div class="hero employee-hero">
+        <div class="hero-copy">
+          <span class="eyebrow">EMPLOYEE KNOWLEDGE PORTAL</span>
+          <h2>Ask your company anything.</h2>
+          <p>Get accurate answers from verified company documents.</p>
+          <button class="btn btn-light" data-go="chat">Ask the Knowledge Assistant →</button>
+        </div>
+        <div class="hero-art">
+          <div class="art-orbit">✧</div>
+          <div class="art-card"><span>DOCUMENT</span><b>Evidence grounded</b><i>✓ Verified citations</i></div>
+        </div>
+      </div>
+
+      <div class="employee-grid">
+        <article class="panel">
+          <div class="panel-heading"><div><h3>Recent conversations</h3><p>Continue with your latest questions.</p></div></div>
+          <div class="doc-list">
+            <div class="mini-row"><span>What is the annual leave policy?</span><small>2h ago</small></div>
+            <div class="mini-row"><span>How do I claim reimbursements?</span><small>Yesterday</small></div>
+            <div class="mini-row"><span>What are the work-from-home rules?</span><small>Mon</small></div>
+          </div>
+        </article>
+
+        <article class="panel">
+          <div class="panel-heading"><div><h3>Suggested questions</h3><p>Popular enterprise topics.</p></div></div>
+          <div class="suggested-stack">
+            <button class="suggest-chip" data-question="What is the annual leave policy?">Annual leave policy</button>
+            <button class="suggest-chip" data-question="What are the work-from-home rules?">Work-from-home rules</button>
+            <button class="suggest-chip" data-question="How do I claim reimbursements?">Reimbursement process</button>
+            <button class="suggest-chip" data-question="What is the employee onboarding process?">Employee onboarding</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="page" id="upload">
+      <div class="page-intro">
+        <span class="eyebrow">KNOWLEDGE CORPUS</span>
+        <h2>Document Upload</h2>
+        <p>Choose the company policies, SOPs and manuals for your knowledge base.</p>
+      </div>
+
+      <div class="upload-zone" id="drop-zone">
+        <div class="upload-symbol">⇧</div>
+        <h3>Drop your documents here</h3>
+        <p>or browse files from your computer</p>
+        <div class="file-types">PDF <span>·</span> TXT <span>·</span> Markdown (.md)</div>
+        <input id="document-input" type="file" accept=".pdf,.txt,.md" multiple hidden>
+        <button class="btn btn-primary" id="browse-files">Browse documents</button>
+        <small>Multiple files can be selected together.</small>
+      </div>
+      <div id="upload-message" class="feedback"></div>
+
+      <article class="panel scan-panel">
+        <div class="panel-heading">
+          <div><h3>Scan &amp; describe uploaded data</h3><p>Review the knowledge set before asking questions.</p></div>
+          <button class="btn btn-primary" id="scan-data">Scan data</button>
+        </div>
+        <div class="scan-grid">
+          <textarea id="data-description" rows="4" placeholder="Describe this knowledge base, for example: HR policies, operations guides, onboarding docs, employee FAQs..."></textarea>
+          <div class="scan-result">
+            <div class="mini-label">Detected files</div>
+            <div id="scan-summary" class="scan-summary">No files uploaded yet.</div>
+          </div>
+        </div>
+      </article>
+
+      <article class="panel">
+        <div class="panel-heading">
+          <div><h3>Document processing queue</h3><p>Selected files are uploaded to the FastAPI backend and tracked in the knowledge base.</p></div>
+          <button class="btn btn-outline" id="refresh-documents">↻ Refresh</button>
+        </div>
+        <div class="table-scroll">
+          <table>
+            <thead><tr><th>DOCUMENT</th><th>TYPE</th><th>VERSION</th><th>PROCESSING</th><th>VERSION STATUS</th></tr></thead>
+            <tbody id="documents-table"><tr><td colspan="5" class="empty-cell">No documents available.</td></tr></tbody>
+          </table>
+        </div>
+      </article>
+    </section>
+
+    <!-- AI CHAT -->
+    <section class="page" id="chat">
+      <div class="page-intro">
+        <span class="eyebrow">GROUNDED QUESTION ANSWERING</span>
+        <h2>AI Knowledge Assistant</h2>
+        <p>Ask questions about your document corpus.</p>
+      </div>
+
+      <div class="chat-layout">
+        <article class="panel chat-panel">
+          <div class="chat-top">
+            <div class="assistant-badge">✧</div>
+            <div><b>EnterIQ Assistant</b><small>Frontend demonstration</small></div>
+            <button class="text-button push-right" id="clear-chat">Clear chat</button>
+          </div>
+          <div class="chat-messages" id="chat-messages">
+            <div class="welcome">
+              <div class="welcome-icon">✧</div>
+              <h3>What would you like to know?</h3>
+              <p>Ask a question about your knowledge base.</p>
+              <div class="suggestions">
+                <button data-question="What is the employee leave policy?">Employee leave policy</button>
+                <button data-question="What are the security procedures?">Security procedures</button>
+                <button data-question="What is the document retention period?">Document retention</button>
+                <button data-question="Whom should we approach during difficult situations?">Approach during difficult situations</button>
+                <button data-question="Whom should we approach to ask for suggestions?">Who to ask for suggestions</button>
+              </div>
+            </div>
+          </div>
+          <div id="answer-evidence" class="answer-evidence hidden"></div>
+          <form id="chat-form" class="chat-composer">
+            <input id="chat-question" autocomplete="off" placeholder="Ask a question from your documents..." required>
+            <button class="send-button" type="submit">↑</button>
+          </form>
+          <div class="composer-note">Responses are generated by the FastAPI backend from the uploaded knowledge base and supporting citations.</div>
+        </article>
+
+        <aside class="panel answer-summary">
+          <h3>Answer classification</h3>
+          <p class="subtle">Status of the latest response.</p>
+          <div id="chat-status" class="status neutral">WAITING FOR QUESTION</div>
+          <div class="summary-row"><span>Sources retrieved</span><b id="chat-source-count">0</b></div>
+          <div class="summary-row"><span>Version preference</span><b id="chat-version">—</b></div>
+          <div class="summary-row"><span>Evidence score</span><b id="chat-score">—</b></div>
+          <div class="hint-box"><b>Required behavior</b><p>Classify every answer as Answered, Partially Answered or Not Covered.</p></div>
+          <button class="btn btn-outline full-width" data-go="citations">Open Citation Viewer →</button>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CITATION VIEWER -->
+    <section class="page" id="citations">
+      <div class="page-intro"><span class="eyebrow">SOURCE TRANSPARENCY</span><h2>Citation Viewer</h2><p>Inspect the document passages used to support an answer.</p></div>
+      <div class="citation-toolbar">
+        <div><b id="citation-count">0 source passages</b><p class="subtle">Citations from your latest response.</p></div>
+        <button class="btn btn-outline" id="refresh-citations">↻ Refresh latest answer</button>
+      </div>
+      <div id="citation-list" class="citation-list"><div class="panel empty-state">No verified citations available. Connect document retrieval to populate this area.</div></div>
+      <div class="citation-footnote"><b>Why citations matter</b><p>Each citation should identify the source document, section and page, and show the supporting excerpt. A citation must point to evidence actually retrieved from the corpus.</p></div>
+    </section>
+
+    <!-- BATCH QUESTIONS -->
+    <section class="page" id="batch">
+      <div class="page-intro"><span class="eyebrow">BATCH EVALUATION</span><h2>Batch Questions</h2><p>Upload a CSV question set for structured processing.</p></div>
+      <article class="panel batch-card">
+        <div class="batch-icon">⇄</div><h3>Upload question set</h3>
+        <p>Choose a CSV file with a column named <b>question</b>.</p>
+        <input id="batch-input" type="file" accept=".csv" hidden>
+        <button class="btn btn-outline" id="batch-browse">Choose CSV file</button>
+        <span id="batch-filename" class="file-name">No file selected</span>
+        <div class="batch-bottom">
+          <button class="text-button" id="download-template">Download CSV template</button>
+          <button class="btn btn-primary" id="run-batch" disabled>Process questions →</button>
+        </div>
+      </article>
+      <div id="batch-message" class="feedback"></div>
+      <article class="panel">
+        <div class="panel-heading"><div><h3>Batch results</h3><p>Question, answer, classification and citations.</p></div><button class="btn btn-outline" id="export-batch" disabled>↓ Export CSV</button></div>
+        <div class="table-scroll">
+          <table><thead><tr><th>QUESTION</th><th>ANSWER</th><th>STATUS</th><th>CITATIONS</th></tr></thead>
+          <tbody id="batch-results"><tr><td colspan="4" class="empty-cell">No batch results yet.</td></tr></tbody></table>
+        </div>
+      </article>
+    </section>
+
+    <!-- VERSION CONTROL -->
+    <section class="page" id="versions">
+      <div class="page-intro"><span class="eyebrow">DOCUMENT GOVERNANCE</span><h2>Version Control</h2><p>Review document versions and prefer the current approved version.</p></div>
+      <div class="notice"><b>Version resolution rule</b><p>When multiple versions conflict, the retrieval system should prefer the current version according to corpus metadata and configured approval/effective-date rules.</p></div>
+      <div class="version-stats">
+        <div class="mini-stat"><span>Current</span><b id="version-current">0</b></div>
+        <div class="mini-stat"><span>Superseded</span><b id="version-old">0</b></div>
+        <div class="mini-stat"><span>Unclassified</span><b id="version-unknown">0</b></div>
+      </div>
+      <article class="panel">
+        <div class="panel-heading"><div><h3>Version history</h3><p>Version metadata returned by the backend.</p></div><button class="btn btn-outline" id="refresh-versions">↻ Refresh</button></div>
+        <div class="table-scroll">
+          <table><thead><tr><th>DOCUMENT</th><th>VERSION</th><th>EFFECTIVE DATE</th><th>STATUS</th><th>PROCESSING</th></tr></thead>
+          <tbody id="versions-table"><tr><td colspan="5" class="empty-cell">No version information available.</td></tr></tbody></table>
+        </div>
+      </article>
+    </section>
+
+    <section class="page" id="library">
+      <div class="page-intro"><span class="eyebrow">DOCUMENT LIBRARY</span><h2>Search company knowledge</h2><p>Filter by status, type, and version.</p></div>
+      <div class="toolbar-row">
+        <input type="text" class="search-box" placeholder="Search documents or topics">
+        <select class="filter-box"><option>All file types</option><option>PDF</option><option>TXT</option><option>Markdown</option></select>
+        <select class="filter-box"><option>All versions</option><option>Current</option><option>Superseded</option></select>
+      </div>
+      <div class="library-grid">
+        <article class="panel doc-card"><div class="doc-card-top"><strong>Leave Policy</strong><span class="pill current">Current</span></div><small>Version 2.1 • Uploaded 2 days ago</small><p>Approved leave and time-off policy for employees.</p><div class="card-actions"><button class="text-button">View</button><button class="text-button">Replace</button><button class="text-button danger">Delete</button></div></article>
+        <article class="panel doc-card"><div class="doc-card-top"><strong>IT Policy</strong><span class="pill muted">Current</span></div><small>Version 1.0 • Uploaded 1 week ago</small><p>Security access and remote working guidance.</p><div class="card-actions"><button class="text-button">View</button><button class="text-button">Replace</button><button class="text-button danger">Delete</button></div></article>
+      </div>
+    </section>
+
+    <section class="page" id="conversations">
+      <div class="page-intro"><span class="eyebrow">MY CONVERSATIONS</span><h2>Recent user queries</h2><p>Continuations of your recent work and document discovery.</p></div>
+      <div class="timeline">
+        <div class="timeline-item"><span>Today</span><p>What is the annual leave policy?</p></div>
+        <div class="timeline-item"><span>Yesterday</span><p>How do I claim reimbursements?</p></div>
+        <div class="timeline-item"><span>Monday</span><p>What are the work-from-home rules?</p></div>
+      </div>
+    </section>
+
+    <section class="page" id="voice">
+      <div class="page-intro"><span class="eyebrow">VOICE ASSISTANT</span><h2>Ask by voice</h2><p>Use speech-to-text and text-to-speech for grounded Q&A.</p></div>
+      <div class="voice-box">
+        <div class="voice-controls">
+          <button class="btn btn-primary" id="voice-toggle">Start recording</button>
+          <button class="btn btn-outline" id="voice-stop">Stop</button>
+          <button class="btn btn-outline" id="voice-replay">Replay answer</button>
+        </div>
+        <div class="transcript-box" id="voice-transcript">Recognised text will appear here before you send it to the knowledge assistant.</div>
+      </div>
+    </section>
+
+    <section class="page" id="analytics">
+      <div class="page-intro"><span class="eyebrow">ANALYTICS</span><h2>Knowledge performance</h2><p>Sample demo data only. Not a live production dashboard.</p></div>
+      <div class="stat-grid analytics-grid">
+        <article class="stat-card"><span class="stat-icon blue">▤</span><p>Total questions</p><strong>1,284</strong><small>Demo data</small></article>
+        <article class="stat-card"><span class="stat-icon green">✓</span><p>Answered</p><strong>72%</strong><small>Grounded responses</small></article>
+        <article class="stat-card"><span class="stat-icon amber">◷</span><p>Partially answered</p><strong>18%</strong><small>Needs more context</small></article>
+        <article class="stat-card"><span class="stat-icon violet">▣</span><p>Not covered</p><strong>10%</strong><small>Out of corpus</small></article>
+      </div>
+    </section>
+
+    <footer class="app-footer">
+      <span>EnterIQ · Enterprise Knowledge Assistant</span>
+      <span>HACKFUSION 2.0</span>
+    </footer>
+  </main>
+</div>
+
+<div id="floating-assistant" class="assistant-widget">
+  <button id="assistant-toggle" class="assistant-toggle" type="button">✧ KNOWLEDGEIQ AI</button>
+  <div id="assistant-panel" class="assistant-panel hidden">
+    <div class="assistant-header">
+      <strong>KNOWLEDGEIQ AI</strong>
+      <button id="assistant-close" type="button">×</button>
+    </div>
+    <div class="assistant-mode">
+      <button class="mode-btn active" data-assistant-mode="platform">Platform help</button>
+      <button class="mode-btn" data-assistant-mode="knowledge">Document knowledge</button>
+    </div>
+    <div class="assistant-body">
+      <div class="assistant-message">How can I help you today?</div>
+    </div>
+    <div class="assistant-input-row">
+      <input id="assistant-input" type="text" placeholder="Ask for help or a policy question">
+      <button id="assistant-send" type="button">Send</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast-container" class="toast-container"></div>
+<script src="app.js"></script>
+</body>
+</html>

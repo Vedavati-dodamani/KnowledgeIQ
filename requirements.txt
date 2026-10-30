@@ -1,0 +1,9 @@
+fastapi==0.115.2
+uvicorn[standard]==0.30.6
+python-multipart==0.0.9
+chromadb==0.5.23
+pymupdf==1.26.3
+sentence-transformers==3.2.1
+python-dotenv==1.0.1
+requests==2.32.3
+pytest==8.3.3
